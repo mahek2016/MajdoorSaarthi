@@ -1,0 +1,67 @@
+.footer {
+  background: var(--color-primary);
+  color: white;
+  margin-top: auto;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2rem;
+  padding: 3rem 1.5rem;
+}
+
+.brand h3 {
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.brand p {
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
+.desc {
+  margin-top: 1rem;
+  opacity: 0.75 !important;
+  font-size: 0.85rem !important;
+  line-height: 1.6;
+}
+
+.links h4 {
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.links a,
+.links span {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.85;
+  transition: opacity var(--transition);
+}
+
+.links a:hover {
+  opacity: 1;
+}
+
+.muted {
+  opacity: 0.6 !important;
+}
+
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 1.25rem 0;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

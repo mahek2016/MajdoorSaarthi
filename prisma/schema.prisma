@@ -1,0 +1,197 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../backend/node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  WORKER
+  CONTRACTOR
+  COMPANY
+}
+
+enum JobStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  CLOSED
+}
+
+enum ApplicationStatus {
+  APPLIED
+  UNDER_REVIEW
+  SELECTED
+  WORK_STARTED
+  COMPLETED
+  REJECTED
+}
+
+enum ProjectStatus {
+  ACTIVE
+  COMPLETED
+  ON_HOLD
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  phone        String    @unique
+  password     String
+  name         String
+  role         UserRole?
+  otpVerified  Boolean   @default(false)
+  profilePhoto String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  worker     Worker?
+  contractor Contractor?
+  company    Company?
+}
+
+model Worker {
+  id            Int      @id @default(autoincrement())
+  userId        Int      @unique
+  experience    Int      @default(0)
+  location      String
+  expectedWage  Int      @default(0)
+  availability  String   @default("Available")
+  rating        Float    @default(0)
+  jobsCompleted Int      @default(0)
+  attendance    Float    @default(100)
+  previousWork  String?  @db.Text
+  latitude      Float?
+  longitude     Float?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  skills       WorkerSkill[]
+  applications Application[]
+  ratings      Rating[]
+  attendances  Attendance[]
+}
+
+model WorkerSkill {
+  id       Int    @id @default(autoincrement())
+  workerId Int
+  skill    String
+
+  worker Worker @relation(fields: [workerId], references: [id], onDelete: Cascade)
+
+  @@unique([workerId, skill])
+}
+
+model Contractor {
+  id           Int      @id @default(autoincrement())
+  userId       Int      @unique
+  businessName String
+  location     String
+  typeOfWork   String?
+  experience   Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobs Job[]
+}
+
+model Company {
+  id            Int      @id @default(autoincrement())
+  userId        Int      @unique
+  companyName   String
+  industry      String
+  location      String
+  contactPerson String
+  companySize   String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projects Project[]
+}
+
+model Job {
+  id              Int       @id @default(autoincrement())
+  contractorId    Int
+  title           String
+  skillRequired   String
+  workersRequired Int       @default(1)
+  workersHired    Int       @default(0)
+  location        String
+  dailyWage       Int
+  duration        Int
+  startDate       DateTime
+  description     String    @db.Text
+  status          JobStatus @default(OPEN)
+  latitude        Float?
+  longitude       Float?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  contractor   Contractor    @relation(fields: [contractorId], references: [id], onDelete: Cascade)
+  applications Application[]
+}
+
+model Application {
+  id         Int               @id @default(autoincrement())
+  jobId      Int
+  workerId   Int
+  matchScore Float             @default(0)
+  status     ApplicationStatus @default(APPLIED)
+  createdAt  DateTime          @default(now())
+  updatedAt  DateTime          @updatedAt
+
+  job    Job    @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  worker Worker @relation(fields: [workerId], references: [id], onDelete: Cascade)
+
+  @@unique([jobId, workerId])
+}
+
+model Project {
+  id              Int           @id @default(autoincrement())
+  companyId       Int
+  name            String
+  location        String
+  workersRequired Int           @default(0)
+  requiredSkills  String        @db.Text
+  budget          Int
+  duration        Int
+  startDate       DateTime
+  progress        Int           @default(0)
+  status          ProjectStatus @default(ACTIVE)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  company     Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  attendances Attendance[]
+}
+
+model Attendance {
+  id        Int              @id @default(autoincrement())
+  workerId  Int
+  projectId Int
+  date      DateTime         @default(now())
+  status    AttendanceStatus @default(PRESENT)
+
+  worker  Worker  @relation(fields: [workerId], references: [id], onDelete: Cascade)
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Rating {
+  id        Int      @id @default(autoincrement())
+  workerId  Int
+  rating    Float
+  review    String?  @db.Text
+  createdAt DateTime @default(now())
+
+  worker Worker @relation(fields: [workerId], references: [id], onDelete: Cascade)
+}

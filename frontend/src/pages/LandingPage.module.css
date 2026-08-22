@@ -1,0 +1,190 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #1e40af 60%, #312e81 100%);
+  color: white;
+  padding: 5rem 0;
+}
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+
+.cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.heroVisual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.statCard:first-child {
+  grid-column: span 2;
+}
+
+.statNum {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.stepCard {
+  text-align: center;
+  position: relative;
+}
+
+.stepNum {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.altBg {
+  background: white;
+}
+
+.roleSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.reverse {
+  direction: rtl;
+}
+
+.reverse > * {
+  direction: ltr;
+}
+
+.roleDesc {
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+.featureList {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.featureList li {
+  padding: 0.5rem 0;
+  color: var(--color-text);
+}
+
+.roleVisual {
+  font-size: 8rem;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.featureCard {
+  text-align: center;
+}
+
+.featureIcon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.featureCard h4 {
+  margin-bottom: 0.5rem;
+}
+
+.featureCard p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.futureScope {
+  background: #f1f5f9;
+}
+
+.futureDesc {
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+}
+
+.comingSoon {
+  display: inline-block;
+  background: var(--color-secondary);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .hero .container,
+  .roleSection {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 2.25rem;
+  }
+
+  .roleVisual {
+    font-size: 5rem;
+    order: -1;
+  }
+
+  .reverse {
+    direction: ltr;
+  }
+}

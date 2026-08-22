@@ -1,0 +1,87 @@
+.card {
+  margin-bottom: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 1rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 1.65rem;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: var(--color-border);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-border);
+  border: 2px solid var(--color-surface);
+}
+
+.step.active .dot {
+  background: var(--color-primary);
+}
+
+.step.current .dot {
+  background: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+}
+
+.step span {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.step.active span {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.match {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .timeline {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .timeline::before {
+    display: none;
+  }
+
+  .step {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}

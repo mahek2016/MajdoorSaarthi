@@ -1,0 +1,30 @@
+.mobileHeader {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 50;
+  gap: 1rem;
+}
+
+.menuBtn {
+  font-size: 1.5rem;
+  padding: 0.25rem;
+}
+
+.mobileTitle {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .mobileHeader {
+    display: flex;
+  }
+}

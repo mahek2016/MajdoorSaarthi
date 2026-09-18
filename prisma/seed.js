@@ -352,8 +352,8 @@ async function main() {
   const [vasaiElectrical, andheriElectrical, thanePlumbing, virarPainting] = jobs;
 
   const applications = [
-    { jobId: vasaiElectrical.id, workerId: ramesh.worker.id, matchScore: 92, status: 'SELECTED' },
-    { jobId: vasaiElectrical.id, workerId: suresh.worker.id, matchScore: 78, status: 'UNDER_REVIEW' },
+    { jobId: vasaiElectrical.id, workerId: ramesh.worker.id, matchScore: 92, status: 'CONFIRMED' },
+    { jobId: vasaiElectrical.id, workerId: suresh.worker.id, matchScore: 78, status: 'SHORTLISTED' },
     { jobId: andheriElectrical.id, workerId: suresh.worker.id, matchScore: 88, status: 'APPLIED' },
     { jobId: andheriElectrical.id, workerId: ramesh.worker.id, matchScore: 81, status: 'APPLIED' },
     { jobId: thanePlumbing.id, workerId: amit.worker.id, matchScore: 90, status: 'APPLIED' },

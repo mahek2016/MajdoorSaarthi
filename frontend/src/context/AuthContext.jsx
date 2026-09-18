@@ -55,13 +55,15 @@ export function AuthProvider({ children }) {
   }, [clearAuth]);
 
   const signup = async ({ name, phone, password }) => {
+    clearAuth();
     const data = await api.post('/auth/signup', { name, phone, password });
     setPendingPhone(phone);
     return data;
   };
 
-  const login = async ({ phone, password }) => {
-    const data = await api.post('/auth/login', { phone, password });
+  const login = async ({ phone, password, role }) => {
+    clearAuth();
+    const data = await api.post('/auth/login', { phone, password, role });
     setPendingPhone(phone);
     return data;
   };

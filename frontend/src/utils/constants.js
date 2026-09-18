@@ -22,22 +22,26 @@ export const COMPANY_SIZES = ['1-10', '11-50', '51-200', '200+'];
 
 export const APPLICATION_STATUSES = [
   'APPLIED',
-  'UNDER_REVIEW',
-  'SELECTED',
+  'SHORTLISTED',
+  'ACCEPTED',
+  'CONFIRMED',
   'WORK_STARTED',
   'COMPLETED',
 ];
 
 export const STATUS_LABELS = {
   APPLIED: 'Applied',
-  UNDER_REVIEW: 'Under Review',
-  SELECTED: 'Selected',
+  SHORTLISTED: 'Shortlisted',
+  ACCEPTED: 'Accepted',
+  CONFIRMED: 'Confirmed',
   WORK_STARTED: 'Work Started',
   COMPLETED: 'Completed',
   REJECTED: 'Rejected',
   OPEN: 'Open',
   IN_PROGRESS: 'In Progress',
   CLOSED: 'Closed',
+  PENDING: 'Pending',
+  VERIFIED: 'Verified',
 };
 
 export const MOCK_OTP = '123456';

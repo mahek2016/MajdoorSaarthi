@@ -219,3 +219,180 @@ export async function getWorkerById(req, res) {
     res.status(500).json({ message: 'Failed to fetch worker' });
   }
 }
+
+export async function verifyKyc(req, res) {
+  try {
+    const { documentType, documentNumber } = req.body;
+    if (!documentType || !documentNumber) {
+      return res.status(400).json({ message: 'Document type and number are required' });
+    }
+
+    if (documentType === 'Aadhaar Card' && !/^\d{12}$/.test(documentNumber)) {
+      return res.status(400).json({ message: 'Aadhaar Card number must be 12 digits' });
+    }
+
+    let status = 'VERIFIED';
+    if (documentNumber.startsWith('9999')) {
+      status = 'REJECTED';
+    }
+
+    const worker = await prisma.worker.update({
+      where: { userId: req.userId },
+      data: {
+        verificationStatus: status,
+        kycDocumentType: documentType,
+        kycDocumentNumber: documentNumber,
+      },
+      include: { user: true, skills: true },
+    });
+
+    res.json({
+      message: status === 'VERIFIED' ? 'KYC Verified successfully!' : 'KYC verification rejected.',
+      worker,
+    });
+  } catch (err) {
+    console.error('Verify KYC error:', err);
+    res.status(500).json({ message: 'Failed to verify KYC' });
+  }
+}
+
+export async function respondToApplication(req, res) {
+  try {
+    const appId = parseInt(req.params.id);
+    const { action } = req.body;
+
+    if (!['ACCEPT', 'REJECT'].includes(action)) {
+      return res.status(400).json({ message: 'Invalid action. Must be ACCEPT or REJECT' });
+    }
+
+    const worker = await prisma.worker.findUnique({ where: { userId: req.userId } });
+    if (!worker) {
+      return res.status(404).json({ message: 'Worker profile not found' });
+    }
+
+    const app = await prisma.application.findUnique({
+      where: { id: appId },
+      include: { job: true },
+    });
+
+    if (!app || app.workerId !== worker.id) {
+      return res.status(403).json({ message: 'Not authorized to respond to this application' });
+    }
+
+    if (app.status !== 'SHORTLISTED') {
+      return res.status(400).json({ message: `Cannot respond. Current status is ${app.status}` });
+    }
+
+    const updated = await prisma.application.update({
+      where: { id: appId },
+      data: {
+        status: action === 'ACCEPT' ? 'ACCEPTED' : 'REJECTED',
+      },
+    });
+
+    res.json({ message: `Application ${action === 'ACCEPT' ? 'accepted' : 'rejected'} successfully`, application: updated });
+  } catch (err) {
+    console.error('Respond to application error:', err);
+    res.status(500).json({ message: 'Failed to respond to application' });
+  }
+}
+
+export async function getTodayAttendance(req, res) {
+  try {
+    const worker = await prisma.worker.findUnique({ where: { userId: req.userId } });
+    if (!worker) return res.status(404).json({ message: 'Worker profile not found' });
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const record = await prisma.attendance.findFirst({
+      where: {
+        workerId: worker.id,
+        date: { gte: today },
+      },
+      include: { job: true },
+    });
+
+    res.json(record);
+  } catch (err) {
+    console.error('Get today attendance error:', err);
+    res.status(500).json({ message: 'Failed to fetch attendance status' });
+  }
+}
+
+export async function checkIn(req, res) {
+  try {
+    const { jobId } = req.body;
+    if (!jobId) return res.status(400).json({ message: 'Job ID is required' });
+
+    const worker = await prisma.worker.findUnique({ where: { userId: req.userId } });
+    if (!worker) return res.status(404).json({ message: 'Worker profile not found' });
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const existing = await prisma.attendance.findFirst({
+      where: {
+        workerId: worker.id,
+        date: { gte: today },
+      },
+    });
+
+    if (existing) {
+      return res.status(400).json({ message: 'Already checked in for today' });
+    }
+
+    const attendance = await prisma.attendance.create({
+      data: {
+        workerId: worker.id,
+        jobId: parseInt(jobId),
+        date: new Date(),
+        checkIn: new Date(),
+        status: 'PRESENT',
+      },
+    });
+
+    res.status(201).json({ message: 'Checked in successfully!', attendance });
+  } catch (err) {
+    console.error('Check in error:', err);
+    res.status(500).json({ message: 'Failed to check in' });
+  }
+}
+
+export async function checkOut(req, res) {
+  try {
+    const { attendanceId } = req.body;
+    if (!attendanceId) return res.status(400).json({ message: 'Attendance ID is required' });
+
+    const worker = await prisma.worker.findUnique({ where: { userId: req.userId } });
+    if (!worker) return res.status(404).json({ message: 'Worker profile not found' });
+
+    const app = await prisma.attendance.findUnique({ where: { id: parseInt(attendanceId) } });
+    if (!app || app.workerId !== worker.id) {
+      return res.status(403).json({ message: 'Unauthorized check-out' });
+    }
+
+    const attendance = await prisma.attendance.update({
+      where: { id: parseInt(attendanceId) },
+      data: {
+        checkOut: new Date(),
+      },
+    });
+
+    const history = await prisma.attendance.findMany({
+      where: { workerId: worker.id },
+    });
+    const presentCount = history.filter((h) => h.status === 'PRESENT').length;
+    const rate = (presentCount / history.length) * 100;
+
+    await prisma.worker.update({
+      where: { id: worker.id },
+      data: { attendance: parseFloat(rate.toFixed(1)) },
+    });
+
+    res.json({ message: 'Checked out successfully!', attendance });
+  } catch (err) {
+    console.error('Check out error:', err);
+    res.status(500).json({ message: 'Failed to check out' });
+  }
+}

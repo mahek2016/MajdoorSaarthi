@@ -12,6 +12,7 @@ export default function PostJob() {
   const [form, setForm] = useState({
     title: '', skillRequired: '', workersRequired: '', location: '',
     dailyWage: '', duration: '', startDate: '', description: '',
+    experienceRequired: '0', requiredAvailability: 'Available',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -28,6 +29,7 @@ export default function PostJob() {
         workersRequired: parseInt(form.workersRequired),
         dailyWage: parseInt(form.dailyWage),
         duration: parseInt(form.duration),
+        experienceRequired: parseInt(form.experienceRequired || 0),
       });
       navigate(`/contractor/jobs/${job.id}/workers`);
     } catch (err) {
@@ -47,6 +49,8 @@ export default function PostJob() {
           <SelectField label="Skill Required" name="skillRequired" value={form.skillRequired} onChange={handleChange} options={SKILLS} required />
           <InputField label="Workers Required" name="workersRequired" type="number" value={form.workersRequired} onChange={handleChange} required />
           <InputField label="Location" name="location" value={form.location} onChange={handleChange} placeholder="Vasai, Mumbai" required />
+          <InputField label="Min Experience Required (years)" name="experienceRequired" type="number" value={form.experienceRequired} onChange={handleChange} required />
+          <SelectField label="Required Availability" name="requiredAvailability" value={form.requiredAvailability} onChange={handleChange} options={['Available', 'Busy', 'Not Available']} />
           <InputField label="Daily Wage (₹)" name="dailyWage" type="number" value={form.dailyWage} onChange={handleChange} required />
           <InputField label="Duration (days)" name="duration" type="number" value={form.duration} onChange={handleChange} required />
           <InputField label="Start Date" name="startDate" type="date" value={form.startDate} onChange={handleChange} required />

@@ -7,10 +7,12 @@ import ProjectCard from '../../components/ProjectCard';
 import PrimaryButton from '../../components/PrimaryButton';
 import LoadingState from '../../components/LoadingState';
 import { useAuth } from '../../context/AuthContext';
+import { useLanguage } from '../../context/LanguageContext';
 import api from '../../services/api';
 
 export default function CompanyDashboard() {
   const { user } = useAuth();
+  const { t } = useLanguage();
   const [projects, setProjects] = useState([]);
   const [workforce, setWorkforce] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,17 +34,17 @@ export default function CompanyDashboard() {
       <DashboardHeader
         name={user?.companyName || user?.user?.name}
         subtitle={user?.industry}
-        action={<Link to="/company/create-project"><PrimaryButton>+ CREATE PROJECT</PrimaryButton></Link>}
+        action={<Link to="/company/create-project"><PrimaryButton>{t('co_dash_create_proj')}</PrimaryButton></Link>}
       />
 
       <div className="grid-4" style={{ marginBottom: '2rem' }}>
-        <StatsCard icon="🏗️" label="Active Projects" value={activeProjects.length} color="primary" />
-        <StatsCard icon="👥" label="Total Workforce" value={workforce?.totalWorkers || 0} color="secondary" />
-        <StatsCard icon="✅" label="Present" value={workforce?.present || 0} color="success" />
-        <StatsCard icon="❌" label="Absent" value={workforce?.absent || 0} color="error" />
+        <StatsCard icon="🏗️" label={t('co_dash_active_proj')} value={activeProjects.length} color="primary" />
+        <StatsCard icon="👥" label={t('co_dash_total_wf')} value={workforce?.totalWorkers || 0} color="secondary" />
+        <StatsCard icon="✅" label={t('co_dash_present')} value={workforce?.present || 0} color="success" />
+        <StatsCard icon="❌" label={t('co_dash_absent')} value={workforce?.absent || 0} color="error" />
       </div>
 
-      <h3 style={{ marginBottom: '1rem' }}>Active Projects</h3>
+      <h3 style={{ marginBottom: '1rem' }}>{t('co_dash_active_proj')}</h3>
       {loading && <LoadingState />}
       {!loading && projects.length === 0 && (
         <p className="text-muted">No projects yet. <Link to="/company/create-project">Create your first project</Link></p>

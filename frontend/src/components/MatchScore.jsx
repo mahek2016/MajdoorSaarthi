@@ -16,23 +16,23 @@ export default function MatchScore({ score, breakdown, size = 'md' }) {
       {breakdown && (
         <div className={styles.breakdown}>
           <div className={styles.row}>
-            <span>Skill Match</span>
+            <span>Skills {breakdown.skillScore > 0 ? '✓' : '✗'}</span>
             <span>{breakdown.skillScore}/40</span>
           </div>
           <div className={styles.row}>
-            <span>Experience</span>
+            <span>Experience {breakdown.experienceScore >= 15 ? '✓' : '✗'}</span>
             <span>{breakdown.experienceScore}/20</span>
           </div>
           <div className={styles.row}>
-            <span>Location</span>
+            <span>Location {breakdown.locationScore >= 12 ? '✓' : '✗'}</span>
             <span>{breakdown.locationScore}/15</span>
           </div>
           <div className={styles.row}>
-            <span>Availability</span>
+            <span>Availability {breakdown.availabilityScore >= 15 ? '✓' : '✗'}</span>
             <span>{breakdown.availabilityScore}/15</span>
           </div>
           <div className={styles.row}>
-            <span>Wage Compatibility</span>
+            <span>Wage {breakdown.wageScore >= 7 ? '✓' : '✗'}</span>
             <span>{breakdown.wageScore}/10</span>
           </div>
         </div>

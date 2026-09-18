@@ -1,0 +1,200 @@
+const en = {
+  // Navbar
+  "nav_home": "Home",
+  "nav_problem": "Problem",
+  "nav_solution": "Solution",
+  "nav_how_it_works": "How It Works",
+  "nav_our_services": "Our Services",
+  "nav_for_workers": "👷 For Workers",
+  "nav_for_contractors": "🧑🔧 For Contractors",
+  "nav_for_companies": "🏢 For Companies",
+  "nav_login": "Login",
+  "nav_get_started": "Get Started",
+
+  // Hero Section
+  "hero_badge": "Blue-Collar Workforce Platform",
+  "hero_tagline_1": "Kaam bhi.",
+  "hero_tagline_2": "Kaamgar bhi.",
+  "hero_subtitle": "AI-powered workforce platform connecting workers with suitable jobs and helping contractors and companies hire verified workers efficiently.",
+  "hero_btn_find_work": "Find Work",
+  "hero_btn_hire_workers": "Hire Workers",
+
+  // Journey Cards
+  "worker_journey_heading": "For Workers",
+  "worker_journey_sub": "Find nearby jobs that match your skills, experience, and wage expectations. Apply with confidence using our transparent rule-based matching system.",
+  "worker_card_1": "Browse jobs near your location",
+  "worker_card_2": "See match scores before applying",
+  "worker_card_3": "Track application status",
+  "worker_card_4": "Build your professional profile",
+
+  "contractor_journey_heading": "For Contractors",
+  "contractor_journey_sub": "Post jobs and find suitable workers quickly. Our matching algorithm ranks workers by skill, experience, location, and availability.",
+  "contractor_card_1": "Post jobs in minutes",
+  "contractor_card_2": "Get suggested worker matches",
+  "contractor_card_3": "Hire directly from profiles",
+  "contractor_card_4": "Manage active jobs",
+
+  // Problem Section
+  "prob_title": "The Problem in Labor Hiring",
+  "prob_subtitle": "Why the traditional blue-collar labor market is broken",
+  "prob_1_title": "Labor Nakas & Station Assembly",
+  "prob_1_desc": "Hundreds of workers stand daily at railway stations and nakas, waiting hours with no guarantee of daily work.",
+  "prob_2_title": "Middlemen Exploitation",
+  "prob_2_desc": "Workers lose significant portions of their daily wages to middle agents and unverified local brokers.",
+  "prob_3_title": "No Verified Profiles",
+  "prob_3_desc": "Contractors spend hours calling multiple unverified workers, with no way to check past performance, ratings, or skills.",
+  "prob_4_title": "Lack of Transparent Records",
+  "prob_4_desc": "No digital track record of work history, attendance logs, or transparent payment releases.",
+
+  // Solution Section
+  "sol_title": "The MajdoorSaarthi Solution",
+  "sol_subtitle": "Transforming informal hiring into an organized, transparent, and matched marketplace",
+  "sol_1_title": "AI-powered Matching",
+  "sol_1_desc": "Rule-based scoring based on skills, location, availability, and expected wage.",
+  "sol_2_title": "Digital Profiles & KYC",
+  "sol_2_desc": "Verified worker registries with digital records of ID, skills, and qualifications.",
+  "sol_3_title": "Attendance & History",
+  "sol_3_desc": "Digital check-in/out console to record shift times, building a verified work history.",
+  "sol_4_title": "Ratings & Reputation",
+  "sol_4_desc": "Direct employer ratings feed into worker reputation, helping best workers earn premium wages.",
+
+  // How It Works
+  "how_title": "Two-Sided Smart Workflow",
+  "how_sub": "Clear steps connecting contractors and skilled workers",
+  "how_works_cta": "See How It Works →",
+  "how_workers_header": "For Workers Flow",
+  "how_contractors_header": "For Contractors Flow",
+
+  "step_w_1": "1. Register with Phone",
+  "step_w_2": "2. Complete Profile & Skills",
+  "step_w_3": "3. Verify KYC Documents",
+  "step_w_4": "4. Get Recommended Jobs",
+  "step_w_5": "5. Apply in One-Click",
+  "step_w_6": "6. Get Shortlisted & Hired",
+  "step_w_7": "7. Digital Attendance Logs",
+  "step_w_8": "8. Transparent Work History",
+  "step_w_9": "9. Build Rating & Reputation",
+
+  "step_c_1": "1. Post Job Requirements",
+  "step_c_2": "2. AI Match Ranking",
+  "step_c_3": "3. View Suggested Workers",
+  "step_c_4": "4. Shortlist / Send Invites",
+  "step_c_5": "5. Worker Accepts Offer",
+  "step_c_6": "6. Confirm Hiring Allocation",
+  "step_c_7": "7. Track Daily Shift Attendance",
+  "step_c_8": "8. Manage Payment Schedules",
+  "step_c_9": "9. Rate Worker Performance",
+
+  // Our Services
+  "srv_title": "Explore Our Services",
+  "srv_subtitle": "Tailored modules for all stakeholders in the cooperative ecosystem",
+  "srv_w_title": "Worker Service Portal",
+  "srv_w_desc": "Access verified jobs near you, build your digital work history, get Aadhaar KYC verified, and secure daily wages transparently.",
+  "srv_c_title": "Contractor Service Portal",
+  "srv_c_desc": "Post your site requirements, match instantly with local labor pools, track shift check-ins, and manage contractor teams efficiently.",
+  "srv_co_title": "Company Project Portal",
+  "srv_co_desc": "Oversee enterprise site projects, access advanced labor analytics, monitor contractor-worker allocations, and track workforce attendance.",
+
+  // AI Matching Demo
+  "demo_title": "AI Worker-Job Match Engine",
+  "demo_subtitle": "Try out our matching algorithm to see how we rank workers",
+  "demo_need_label": "Required Skill",
+  "demo_loc_label": "Location",
+  "demo_avail_label": "Availability",
+  "demo_exp_label": "Required Experience",
+  "demo_results_title": "Top Recommended Matches",
+  "demo_match_indicator": "Match Score",
+  "demo_skills_ok": "✓ Skills Match",
+  "demo_loc_ok": "✓ Location Match",
+  "demo_avail_ok": "✓ Availability Match",
+  "demo_exp_ok": "✓ Experience Match",
+
+  // Trust & Verification
+  "trust_title": "Building a Network of Trust",
+  "trust_subtitle": "Our verification pipeline creates security for both workers and employers",
+  "trust_1_title": "Aadhaar KYC Verification",
+  "trust_1_desc": "Every profile is validated against government identity documents to prevent identity fraud.",
+  "trust_2_title": "Skill Certification Check",
+  "trust_2_desc": "Trade certifications and background skills are cataloged and verified by local cooperative desks.",
+  "trust_3_title": "Immutable Work History",
+  "trust_3_desc": "Shift records and completions are digitally recorded, preventing history falsification.",
+  "trust_4_title": "Reputation Score Card",
+  "trust_4_desc": "Employer ratings are combined with attendance tracking to produce a composite worker reliability index.",
+
+  // Workforce Analytics
+  "analytics_title": "Live Workforce Insights",
+  "analytics_subtitle": "Real-time indicators showing market demand, jobs, and hiring",
+  "analytics_jobs": "Jobs Posted",
+  "analytics_hired": "Workers Hired",
+  "analytics_active": "Active Shifts Today",
+  "analytics_demand": "Worker Demand Index",
+  "analytics_locations": "High Demand Hubs",
+  "analytics_skills": "Top Demanded Skills",
+
+  // Sidebar / Navigation keys
+  "side_dashboard": "Dashboard",
+  "side_jobs": "Jobs",
+  "side_applications": "Applications",
+  "side_profile": "Profile",
+  "side_post_job": "Post Job",
+  "side_workers": "Workers",
+  "side_household": "Hire for Home",
+  "side_analytics": "Analytics",
+  "side_projects": "Projects",
+  "side_workforce": "Workforce",
+  "side_logout": "Logout",
+
+  // Worker Dashboard UI
+  "w_dash_active_shift": "Today's Active Shift",
+  "w_dash_check_in": "CHECK IN",
+  "w_dash_check_out": "CHECK OUT",
+  "w_dash_checked_in_at": "Checked In:",
+  "w_dash_checked_out_at": "Checked Out:",
+  "w_dash_shift_completed": "Shift Completed ✓",
+  "w_dash_working": "Status: Working...",
+  "w_dash_check_in_prompt": "Please check-in to start your shift.",
+  "w_dash_search_jobs": "Search jobs",
+  "w_dash_recommended": "Recommended Jobs",
+  "w_dash_view_all_jobs": "View all jobs →",
+  "w_dash_experience": "Experience",
+  "w_dash_wage": "Expected Wage",
+
+  // Contractor Dashboard UI
+  "c_dash_active_jobs": "Active Jobs",
+  "c_dash_total_hired": "Total Workers Hired",
+  "c_dash_avg_rating": "Avg Worker Rating",
+  "c_dash_post_new_job": "Post New Job",
+  "c_dash_recent_posts": "Recent Job Postings",
+  "c_dash_required": "Required",
+  "c_dash_hired": "Hired",
+  "c_dash_manage": "MANAGE",
+  "c_dash_suggested": "SUGGESTED WORKERS",
+
+  // Company Dashboard UI
+  "co_dash_active_proj": "Active Projects",
+  "co_dash_total_wf": "Total Workforce",
+  "co_dash_present": "Present",
+  "co_dash_absent": "Absent",
+  "co_dash_create_proj": "+ CREATE PROJECT",
+
+  // Shared Form / Labels
+  "form_phone": "Mobile Number",
+  "form_password": "Password",
+  "form_name": "Full Name",
+  "form_confirm_pw": "Confirm Password",
+  "btn_submit": "Submit",
+  "btn_save": "Save",
+  "btn_cancel": "Cancel",
+  "status_label": "Status",
+
+  // Auth UI
+  "auth_welcome_back": "Welcome Back 👋",
+  "auth_choose_role": "Choose Your Role",
+  "auth_select_desc": "Select how you want to use MajdoorSaarthi",
+  "auth_verify_otp": "Verify OTP",
+  "auth_dev_otp_notice": "Dev OTP: 123456",
+  "auth_verify_btn": "VERIFY OTP",
+  "auth_verifying": "Verifying..."
+};
+
+export default en;

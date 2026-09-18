@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import ProtectedRoute from './navigation/ProtectedRoute';
 import LoadingState from './components/LoadingState';
+import SaarthiWidget from './components/SaarthiWidget';
 
 // Public
 import LandingPage from './pages/LandingPage';
@@ -25,6 +26,9 @@ import ContractorJobs from './pages/contractor/ContractorJobs';
 import PostJob from './pages/contractor/PostJob';
 import SuggestedWorkers from './pages/contractor/SuggestedWorkers';
 import WorkerDetailsContractor from './pages/contractor/WorkerDetailsContractor';
+import WorkerSearch from './pages/contractor/WorkerSearch';
+import HouseholdRequest from './pages/contractor/HouseholdRequest';
+import ContractorAnalytics from './pages/contractor/ContractorAnalytics';
 
 // Company
 import CompanyOnboarding from './pages/company/CompanyOnboarding';
@@ -41,6 +45,7 @@ function App() {
   }
 
   return (
+    <>
     <Routes>
       {/* Public Routes */}
       <Route path="/" element={<LandingPage />} />
@@ -88,7 +93,13 @@ function App() {
         <ProtectedRoute allowedRoles={['CONTRACTOR']}><SuggestedWorkers /></ProtectedRoute>
       } />
       <Route path="/contractor/workers" element={
-        <ProtectedRoute allowedRoles={['CONTRACTOR']}><ContractorJobs /></ProtectedRoute>
+        <ProtectedRoute allowedRoles={['CONTRACTOR']}><WorkerSearch /></ProtectedRoute>
+      } />
+      <Route path="/contractor/household" element={
+        <ProtectedRoute allowedRoles={['CONTRACTOR']}><HouseholdRequest /></ProtectedRoute>
+      } />
+      <Route path="/contractor/analytics" element={
+        <ProtectedRoute allowedRoles={['CONTRACTOR']}><ContractorAnalytics /></ProtectedRoute>
       } />
       <Route path="/contractor/workers/:id" element={
         <ProtectedRoute allowedRoles={['CONTRACTOR']}><WorkerDetailsContractor /></ProtectedRoute>
@@ -116,6 +127,8 @@ function App() {
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    <SaarthiWidget />
+    </>
   );
 }
 

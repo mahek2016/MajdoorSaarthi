@@ -3,17 +3,17 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: var(--color-primary);
+  background: var(--color-secondary);
   color: white;
   font-weight: 600;
   border-radius: var(--radius-md);
   transition: background var(--transition), transform var(--transition), opacity var(--transition);
-  border: 2px solid var(--color-primary);
+  border: 2px solid var(--color-secondary);
 }
 
 .btn:hover:not(:disabled) {
-  background: var(--color-primary-dark);
-  border-color: var(--color-primary-dark);
+  background: var(--color-secondary-dark);
+  border-color: var(--color-secondary-dark);
 }
 
 .btn:active:not(:disabled) {

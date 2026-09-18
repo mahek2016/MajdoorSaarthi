@@ -74,6 +74,9 @@
   flex-direction: column;
   gap: 5px;
   padding: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .menuToggle span {
@@ -96,6 +99,69 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* Dropdown styling */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownBtn {
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  padding: 0.25rem 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--transition);
+}
+
+.dropdownBtn:hover {
+  color: var(--color-primary);
+}
+
+.dropdownContent {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 170px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 101;
+}
+
+.dropdownContent a,
+.dropdownContent button {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem !important;
+  color: var(--color-text) !important;
+  text-align: left;
+  background: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  transition: background var(--transition);
+  display: block;
+}
+
+.dropdownContent a:hover,
+.dropdownContent button:hover {
+  background: var(--color-cream);
+  color: var(--color-primary) !important;
+}
+
+.langOpt {
+  font-weight: 500 !important;
+}
+
 @media (max-width: 900px) {
   .menuToggle {
     display: flex;
@@ -116,11 +182,40 @@
     opacity: 0;
     pointer-events: none;
     transition: transform var(--transition), opacity var(--transition);
+    overflow-y: auto;
+    max-height: calc(100vh - var(--header-height));
   }
 
   .links.open {
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
+  }
+
+  .dropdown {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdownBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+
+  .dropdownContent {
+    position: static;
+    box-shadow: none;
+    border: none;
+    padding-left: 0;
+    background: transparent;
+    width: 100%;
+    align-items: center;
+  }
+
+  .dropdownContent a,
+  .dropdownContent button {
+    text-align: center;
+    padding: 0.4rem 1rem;
   }
 }

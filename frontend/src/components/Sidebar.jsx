@@ -1,29 +1,33 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import styles from './Sidebar.module.css';
 
 const NAV_CONFIG = {
   WORKER: [
-    { to: '/worker/dashboard', label: 'Dashboard', icon: '🏠' },
-    { to: '/worker/jobs', label: 'Jobs', icon: '💼' },
-    { to: '/worker/applications', label: 'Applications', icon: '📋' },
-    { to: '/worker/profile', label: 'Profile', icon: '👤' },
+    { to: '/worker/dashboard', key: 'side_dashboard', icon: '🏠' },
+    { to: '/worker/jobs', key: 'side_jobs', icon: '💼' },
+    { to: '/worker/applications', key: 'side_applications', icon: '📋' },
+    { to: '/worker/profile', key: 'side_profile', icon: '👤' },
   ],
   CONTRACTOR: [
-    { to: '/contractor/dashboard', label: 'Dashboard', icon: '🏠' },
-    { to: '/contractor/jobs', label: 'Jobs', icon: '💼' },
-    { to: '/contractor/post-job', label: 'Post Job', icon: '➕' },
-    { to: '/contractor/workers', label: 'Workers', icon: '👷' },
+    { to: '/contractor/dashboard', key: 'side_dashboard', icon: '🏠' },
+    { to: '/contractor/jobs', key: 'side_jobs', icon: '💼' },
+    { to: '/contractor/post-job', key: 'side_post_job', icon: '➕' },
+    { to: '/contractor/workers', key: 'side_workers', icon: '👷' },
+    { to: '/contractor/household', key: 'side_household', icon: '🏡' },
+    { to: '/contractor/analytics', key: 'side_analytics', icon: '📊' },
   ],
   COMPANY: [
-    { to: '/company/dashboard', label: 'Dashboard', icon: '🏠' },
-    { to: '/company/projects', label: 'Projects', icon: '🏗️' },
-    { to: '/company/workforce', label: 'Workforce', icon: '👥' },
+    { to: '/company/dashboard', key: 'side_dashboard', icon: '🏠' },
+    { to: '/company/projects', key: 'side_projects', icon: '🏗️' },
+    { to: '/company/workforce', key: 'side_workforce', icon: '👥' },
   ],
 };
 
 export default function Sidebar({ mobileOpen, onClose }) {
   const { role, logout, user } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const links = NAV_CONFIG[role] || [];
 
@@ -53,7 +57,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
               onClick={onClose}
             >
               <span>{link.icon}</span>
-              {link.label}
+              {t(link.key)}
             </NavLink>
           ))}
         </nav>
@@ -61,7 +65,7 @@ export default function Sidebar({ mobileOpen, onClose }) {
         <div className={styles.footer}>
           <p className={styles.userName}>{user?.name || user?.user?.name}</p>
           <button className={styles.logout} onClick={handleLogout}>
-            🚪 Logout
+            🚪 {t('side_logout')}
           </button>
         </div>
       </aside>

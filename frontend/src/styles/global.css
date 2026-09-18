@@ -1,21 +1,23 @@
 /* MajdoorSaarthi Design System */
 
 :root {
-  --color-primary: #1e3a8a;
-  --color-primary-light: #2563eb;
-  --color-primary-dark: #1e40af;
-  --color-secondary: #f59e0b;
+  --color-primary: #173B57;
+  --color-primary-light: #255278;
+  --color-primary-dark: #0f2639;
+  --color-secondary: #F59E0B;
   --color-secondary-light: #fbbf24;
-  --color-background: #f8fafc;
+  --color-secondary-dark: #d97706;
+  --color-background: #F7F8FA;
+  --color-cream: #FFF8ED;
   --color-surface: #ffffff;
-  --color-text: #111827;
-  --color-text-muted: #6b7280;
-  --color-border: #e5e7eb;
-  --color-success: #16a34a;
-  --color-success-light: #dcfce7;
-  --color-error: #dc2626;
-  --color-error-light: #fee2e2;
-  --color-warning: #f59e0b;
+  --color-text: #17212B;
+  --color-text-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-success: #2E8B57;
+  --color-success-light: #e6f4ea;
+  --color-error: #D64545;
+  --color-error-light: #fdf2f2;
+  --color-warning: #F59E0B;
 
   --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --radius-sm: 6px;
@@ -256,7 +258,7 @@ h4 { font-size: 1.25rem; }
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-background) 100%);
 }
 
 .auth-card {

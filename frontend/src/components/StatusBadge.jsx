@@ -7,12 +7,15 @@ const BADGE_MAP = {
   COMPLETED: 'completed',
   CLOSED: 'closed',
   APPLIED: 'applied',
-  UNDER_REVIEW: 'review',
-  SELECTED: 'selected',
+  SHORTLISTED: 'review',
+  ACCEPTED: 'selected',
+  CONFIRMED: 'completed',
   WORK_STARTED: 'progress',
   REJECTED: 'rejected',
   ACTIVE: 'open',
   ON_HOLD: 'review',
+  PENDING: 'review',
+  VERIFIED: 'completed',
 };
 
 export default function StatusBadge({ status }) {
